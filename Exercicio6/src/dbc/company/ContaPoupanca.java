@@ -7,6 +7,10 @@ public class ContaPoupanca extends Conta implements Impressao {
         super(cliente, numeroConta, agencia, saldo);
     }
 
+    public ContaPoupanca() {
+
+    }
+
     public void creditarTaxa(){
         setSaldo(getSaldo()*JUROS_MENSAL);
     }
