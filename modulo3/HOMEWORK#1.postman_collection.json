@@ -139,6 +139,15 @@
 			"request": {
 				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n        \"userId\": 1,\r\n        \"id\": 1,\r\n        \"title\": \"tiago coelho\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "https://jsonplaceholder.typicode.com/albums",
 					"protocol": "https",
@@ -159,6 +168,10 @@
 			"request": {
 				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n        \"userId\": 1,\r\n        \"id\": 1,\r\n        \"title\": \"tiago\",\r\n        \"completed\": false\r\n    }"
+				},
 				"url": {
 					"raw": "https://jsonplaceholder.typicode.com/photos",
 					"protocol": "https",
@@ -179,6 +192,15 @@
 			"request": {
 				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n    {\r\n        \"userId\": 1,\r\n        \"id\": 1,\r\n        \"title\": \"tiago\",\r\n        \"completed\": false\r\n    }\r\n    ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "https://jsonplaceholder.typicode.com/todos",
 					"protocol": "https",
@@ -199,6 +221,15 @@
 			"request": {
 				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n        \"id\": 1,\r\n        \"name\": \"tiago\",\r\n        \"username\": \"coelho\",\r\n        \"email\": \"tiagospaik@hotmail.com\",\r\n        \"address\": {\r\n            \"street\": \"Kulas Light\",\r\n            \"suite\": \"Apt. 400\",\r\n            \"city\": \"Gwenborough\",\r\n            \"zipcode\": \"92998-2222\",\r\n            \"geo\": {\r\n                \"lat\": \"-37.3159\",\r\n                \"lng\": \"81.1496\"\r\n            }\r\n        }\r\n }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "https://jsonplaceholder.typicode.com/users",
 					"protocol": "https",
@@ -219,8 +250,17 @@
 			"request": {
 				"method": "PUT",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"postId\": 1,\r\n        \"id\": 1,\r\n        \"name\": \"tiago coelho\",\r\n        \"email\": \"Eliseo@gardner.biz\",\r\n        \"body\": \"laudantium enim quasi est quidem magnam voluptate ipsam eos\\ntempora quo necessitatibus\\ndolor quam autem quasi\\nreiciendis et nam sapiente accusantium\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "https://jsonplaceholder.typicode.com/comments",
+					"raw": "https://jsonplaceholder.typicode.com/comments/1",
 					"protocol": "https",
 					"host": [
 						"jsonplaceholder",
@@ -228,7 +268,8 @@
 						"com"
 					],
 					"path": [
-						"comments"
+						"comments",
+						"1"
 					]
 				}
 			},
@@ -239,8 +280,17 @@
 			"request": {
 				"method": "PUT",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "   {\r\n        \"userId\": 1,\r\n        \"id\": 1,\r\n        \"title\": \"meu nome e tiago\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "https://jsonplaceholder.typicode.com/albums",
+					"raw": "https://jsonplaceholder.typicode.com/albums/1",
 					"protocol": "https",
 					"host": [
 						"jsonplaceholder",
@@ -248,7 +298,8 @@
 						"com"
 					],
 					"path": [
-						"albums"
+						"albums",
+						"1"
 					]
 				}
 			},
@@ -259,8 +310,17 @@
 			"request": {
 				"method": "PUT",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"userId\": 1,\r\n        \"id\": 1,\r\n        \"title\": \"tiago coelho\",\r\n        \"completed\": false\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "https://jsonplaceholder.typicode.com/photos",
+					"raw": "https://jsonplaceholder.typicode.com/photos/1",
 					"protocol": "https",
 					"host": [
 						"jsonplaceholder",
@@ -268,7 +328,8 @@
 						"com"
 					],
 					"path": [
-						"photos"
+						"photos",
+						"1"
 					]
 				}
 			},
@@ -279,8 +340,17 @@
 			"request": {
 				"method": "PUT",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"userId\": 1,\r\n        \"id\": 1,\r\n        \"title\": \"tiago coelho\",\r\n        \"completed\": false\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "https://jsonplaceholder.typicode.com/todos",
+					"raw": "https://jsonplaceholder.typicode.com/todos/1",
 					"protocol": "https",
 					"host": [
 						"jsonplaceholder",
@@ -288,7 +358,8 @@
 						"com"
 					],
 					"path": [
-						"todos"
+						"todos",
+						"1"
 					]
 				}
 			},
@@ -299,8 +370,17 @@
 			"request": {
 				"method": "PUT",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"id\": 1,\r\n        \"name\": \"tiago coelho\",\r\n        \"username\": \"Bret\",\r\n        \"email\": \"Sincere@april.biz\",\r\n        \"address\": {\r\n            \"street\": \"Kulas Light\",\r\n            \"suite\": \"Apt. 556\",\r\n            \"city\": \"Gwenborough\",\r\n            \"zipcode\": \"92998-3874\",\r\n            \"geo\": {\r\n                \"lat\": \"-37.3159\",\r\n                \"lng\": \"81.1496\"\r\n            }\r\n        },\r\n        \"phone\": \"1-770-736-8031 x56442\",\r\n        \"website\": \"hildegard.org\",\r\n        \"company\": {\r\n            \"name\": \"Romaguera-Crona\",\r\n            \"catchPhrase\": \"Multi-layered client-server neural-net\",\r\n            \"bs\": \"harness real-time e-markets\"\r\n        }\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "https://jsonplaceholder.typicode.com/users",
+					"raw": "https://jsonplaceholder.typicode.com/users/1",
 					"protocol": "https",
 					"host": [
 						"jsonplaceholder",
@@ -308,7 +388,113 @@
 						"com"
 					],
 					"path": [
-						"users"
+						"users",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE/COMMENTS",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/comments/1",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"comments",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE/ALBUMS",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/albums/1",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"albums",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE/PHOTOS",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/photos/1",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"photos",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE/TODOS",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/todos/2",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"todos",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE/USERS",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/users/1",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"users",
+						"1"
 					]
 				}
 			},

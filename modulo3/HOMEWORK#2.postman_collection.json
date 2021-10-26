@@ -83,7 +83,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"idPessoa\": 3,\r\n    \"nome\": \"Marina Oliveira\",\r\n    \"dataNascimento\": \"1970-03-30\",\r\n    \"cpf\": \"12345678912\"\r\n}",
+					"raw": "{\r\n    \"idPessoa\": 3,\r\n    \"nome\": \"tiago\",\r\n    \"dataNascimento\": \"1970-03-30\",\r\n    \"cpf\": \"12345678912\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -152,7 +152,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"idPessoa\": 3,\r\n    \"nome\": \"Marina2 Oliveira\",\r\n    \"dataNascimento\": \"1970-03-30\",\r\n    \"cpf\": \"12345678912\"\r\n}",
+					"raw": "{\r\n    \"idPessoa\": 3,\r\n    \"nome\": \"tiago\",\r\n    \"dataNascimento\": \"1970-03-30\",\r\n    \"cpf\": \"12345678912\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -181,7 +181,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"idPessoa\": 3,\r\n    \"nome\": \"Marina2 Oliveira\",\r\n    \"dataNascimento\": \"1970-03-30\",\r\n    \"cpf\": \"12345678912\"\r\n}",
+					"raw": "{\r\n    \"idPessoa\": 3,\r\n    \"nome\": \"tiago\",\r\n    \"dataNascimento\": \"1970-03-30\",\r\n    \"cpf\": \"12345678912\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -210,7 +210,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "https://my-application-teste.herokuapp.com/contato/5",
+					"raw": "https://my-application-teste.herokuapp.com/contato/1",
 					"protocol": "https",
 					"host": [
 						"my-application-teste",
@@ -219,7 +219,7 @@
 					],
 					"path": [
 						"contato",
-						"5"
+						"1"
 					]
 				}
 			},
