@@ -1,0 +1,171 @@
+{
+	"info": {
+		"_postman_id": "525c2dd5-4985-4e30-a4ff-328318762022",
+		"name": "HOMEWORK#3",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET/ENDEREÇO",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/Endereco",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Endereco"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET/ENDEREÇO/IDENDEREÇO",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/Endereco/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Endereco",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET/ENDEREÇO/IDPESSOA",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/Endereco/1/pessoa",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Endereco",
+						"1",
+						"pessoa"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST/ENDEREÇO/IDPESSOA",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n        \"id\": 1,\r\n        \"idPessoa\": 1,\r\n        \"tipo\": \"RESIDENCIAL\",\r\n        \"logradouro\": \"logradouro\",\r\n        \"numero\": 403,\r\n        \"complemento\": \"proximo ão mercado e armazem união\",\r\n        \"cep\": \"54705-200\",\r\n        \"cidade\": \"são lourenço da mata , Pernanbuco\",\r\n        \"estado\": \"Pernanbuco\",\r\n        \"pais\": \"Brasil\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/Endereco/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Endereco",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT/ENDERECO/IDENDERECO",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"idPessoa\": 2,\r\n    \"tipo\": \"RESIDENCIAL\",\r\n    \"logradouro\": \"logradouro\",\r\n    \"numero\": \"\",\r\n    \"complemento\": \"\",\r\n    \"cep\": \"54705-200\",\r\n    \"cidade\": \"são lourenço da mata , Pernanbuco\",\r\n    \"estado\": \"Pernanbuco\",\r\n    \"pais\": \"Brasil\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/Endereco/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Endereco",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE/ENDEREÇO/IDENDEREÇO",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/Endereco/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Endereco",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

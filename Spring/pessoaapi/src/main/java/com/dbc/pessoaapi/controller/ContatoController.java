@@ -3,6 +3,7 @@ package com.dbc.pessoaapi.controller;
 import com.dbc.pessoaapi.entity.Contato;
 import com.dbc.pessoaapi.entity.Pessoa;
 import com.dbc.pessoaapi.service.ContatoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,15 +12,15 @@ import java.util.List;
 @RestController
 @RequestMapping("/contato")
 public class ContatoController {
+    @Autowired
     private ContatoService contatoService;
 
     public ContatoController(){
-        this.contatoService = new ContatoService();
     }
 
     @GetMapping("/teste")
     public String teste(){
-        return "testando contato";
+        return "teste";
     }
 
     @GetMapping
