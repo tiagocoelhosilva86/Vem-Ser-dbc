@@ -1,21 +1,32 @@
 package com.dbc.pessoaapi.entity;
 
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 
 public class Pessoa {
     private Integer idPessoa;
-    private String nome;
-    private LocalDate dataNascimento;
-    private String cpf;
 
-    public Pessoa() {
-    }
+    @NotEmpty
+    @NotBlank
+    private String nome;
+
+
+    @NotNull
+    @Past
+    private LocalDate dataNascimento;
+    @NotBlank
+    @NotEmpty
+    @Size(max = 11, min = 11)
+    private String cpf;
 
     public Pessoa(Integer idPessoa, String nome, LocalDate dataNascimento, String cpf) {
         this.idPessoa = idPessoa;
         this.nome = nome;
         this.dataNascimento = dataNascimento;
         this.cpf = cpf;
+    }
+
+    public Pessoa() {
     }
 
     public Integer getIdPessoa() {

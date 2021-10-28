@@ -1,5 +1,6 @@
 package com.dbc.pessoaapi.service;
 
+import com.dbc.pessoaapi.Exceptions.RegraDeNegocioException;
 import com.dbc.pessoaapi.entity.Pessoa;
 import com.dbc.pessoaapi.repository.PessoaRepository;
 import org.apache.commons.lang3.ObjectUtils;
@@ -20,21 +21,17 @@ public class PessoaService {
     }
 
     public Pessoa create(Pessoa pessoa) throws Exception {
-        if (StringUtils.isBlank(pessoa.getNome())){
-            throw new Exception("nome não informado");
-
-        }
-        if (ObjectUtils.isEmpty(pessoa.getDataNascimento())){
-            throw new Exception("data de nascimento não informado");
-        }
-        if (StringUtils.isBlank(pessoa.getCpf())){
-            throw new Exception("cpf não informado");
-        } else if (pessoa.getCpf().length() !=11 ){
-            throw new Exception("cpf deve ser igual a 11");
+//        if (StringUtils.isBlank(pessoa.getNome())) {
+//            throw new Exception("nome não informado");
+//        }
+//        if (ObjectUtils.isEmpty(pessoa.getDataNascimento())) {
+//            throw new Exception("data de nascimento não informada");
+//        }
+        if (StringUtils.isBlank(pessoa.getCpf()) || StringUtils.length(pessoa.getCpf()) != 11) {
+            throw new RegraDeNegocioException("cpf não informada ou deve ser igual a 11");
         }
 
         return pessoaRepository.create(pessoa);
-
     }
 
     public List<Pessoa> list(){

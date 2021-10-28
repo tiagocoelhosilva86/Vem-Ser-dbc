@@ -1,5 +1,6 @@
 package com.dbc.pessoaapi.repository;
 
+import com.dbc.pessoaapi.Exceptions.RegraDeNegocioException;
 import com.dbc.pessoaapi.entity.Contato;
 import com.dbc.pessoaapi.entity.Endereco;
 import com.dbc.pessoaapi.entity.Pessoa;
@@ -32,7 +33,7 @@ public class EnderecoRepository {
         Endereco endereco1Alterado = enderecoList.stream()
                 .filter(x -> x.getIdPessoa().equals(id))
                 .findFirst()
-                .orElseThrow(() -> new Exception("Contato não econtrada"));
+                .orElseThrow(() -> new RegraDeNegocioException("Contato não econtrada"));
         endereco1Alterado.setTipo(endereco.getTipo());
         endereco1Alterado.setCep(endereco.getCep());
         endereco1Alterado.setNumero(endereco.getNumero());
@@ -69,7 +70,7 @@ public class EnderecoRepository {
         Endereco enderecoRecuperado = enderecoList.stream()
                 .filter(pessoa -> pessoa.getId().equals(id))
                 .findFirst()
-                .orElseThrow(() -> new Exception("endereço não econtrada"));
+                .orElseThrow(() -> new RegraDeNegocioException("endereço não econtrada"));
         enderecoList.remove(enderecoRecuperado);
     }
 
