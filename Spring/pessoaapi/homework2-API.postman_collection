@@ -14,12 +14,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/contato/",
+							"raw": "{{url}}/contatoentity/",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
-								"contato",
+								"contatoentity",
 								""
 							]
 						}
@@ -32,7 +32,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://my-application-teste.herokuapp.com/contato/1",
+							"raw": "https://my-application-teste.herokuapp.com/contatoentity/1",
 							"protocol": "https",
 							"host": [
 								"my-application-teste",
@@ -40,7 +40,7 @@
 								"com"
 							],
 							"path": [
-								"contato",
+								"contatoentity",
 								"1"
 							]
 						}
@@ -62,7 +62,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://my-application-teste.herokuapp.com/contato/1",
+							"raw": "https://my-application-teste.herokuapp.com/contatoentity/1",
 							"protocol": "https",
 							"host": [
 								"my-application-teste",
@@ -70,7 +70,7 @@
 								"com"
 							],
 							"path": [
-								"contato",
+								"contatoentity",
 								"1"
 							]
 						}
@@ -92,7 +92,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://my-application-teste.herokuapp.com/contato/1",
+							"raw": "https://my-application-teste.herokuapp.com/contatoentity/1",
 							"protocol": "https",
 							"host": [
 								"my-application-teste",
@@ -100,7 +100,7 @@
 								"com"
 							],
 							"path": [
-								"contato",
+								"contatoentity",
 								"1"
 							]
 						}
@@ -108,12 +108,12 @@
 					"response": []
 				},
 				{
-					"name": "DELETE / contato",
+					"name": "DELETE / contatoentity",
 					"request": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "https://my-application-teste.herokuapp.com/contato/1",
+							"raw": "https://my-application-teste.herokuapp.com/contatoentity/1",
 							"protocol": "https",
 							"host": [
 								"my-application-teste",
@@ -121,7 +121,7 @@
 								"com"
 							],
 							"path": [
-								"contato",
+								"contatoentity",
 								"1"
 							]
 						}
@@ -134,17 +134,17 @@
 			"name": "PESSOA",
 			"item": [
 				{
-					"name": "GET /pessoa",
+					"name": "GET /pessoaentity",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/pessoa/byname?nome=maicon",
+							"raw": "{{url}}/pessoaentity/byname?nome=maicon",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
-								"pessoa",
+								"pessoaentity",
 								"byname"
 							],
 							"query": [
@@ -158,7 +158,7 @@
 					"response": []
 				},
 				{
-					"name": "POST /pessoa",
+					"name": "POST /pessoaentity",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -172,7 +172,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://my-application-teste.herokuapp.com/pessoa",
+							"raw": "https://my-application-teste.herokuapp.com/pessoaentity",
 							"protocol": "https",
 							"host": [
 								"my-application-teste",
@@ -180,14 +180,14 @@
 								"com"
 							],
 							"path": [
-								"pessoa"
+								"pessoaentity"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "PUT /pessoa/id",
+					"name": "PUT /pessoaentity/id",
 					"request": {
 						"method": "PUT",
 						"header": [],
@@ -201,7 +201,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://my-application-teste.herokuapp.com/pessoa/1",
+							"raw": "https://my-application-teste.herokuapp.com/pessoaentity/1",
 							"protocol": "https",
 							"host": [
 								"my-application-teste",
@@ -209,7 +209,7 @@
 								"com"
 							],
 							"path": [
-								"pessoa",
+								"pessoaentity",
 								"1"
 							]
 						}
@@ -217,12 +217,12 @@
 					"response": []
 				},
 				{
-					"name": "DELETE /pessoa/id",
+					"name": "DELETE /pessoaentity/id",
 					"request": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "https://my-application-teste.herokuapp.com/pessoa/2",
+							"raw": "https://my-application-teste.herokuapp.com/pessoaentity/2",
 							"protocol": "https",
 							"host": [
 								"my-application-teste",
@@ -230,7 +230,7 @@
 								"com"
 							],
 							"path": [
-								"pessoa",
+								"pessoaentity",
 								"2"
 							]
 						}

@@ -11,7 +11,7 @@
 	<groupId>com.dbc</groupId>
 	<artifactId>pessoaapi</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>pessoa-api</name>
+	<name>pessoaentity-api</name>
 	<description>Projeto para criação e atualização de dados de pessoas</description>
 	<properties>
 		<java.version>11</java.version>
@@ -26,6 +26,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.22</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>

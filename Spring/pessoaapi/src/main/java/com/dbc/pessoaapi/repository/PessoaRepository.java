@@ -1,9 +1,8 @@
 package com.dbc.pessoaapi.repository;
 
 import com.dbc.pessoaapi.Exceptions.RegraDeNegocioException;
-import com.dbc.pessoaapi.entity.Pessoa;
+import com.dbc.pessoaapi.entity.Pessoaentity;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -13,49 +12,49 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 @Repository
 public class PessoaRepository {
-    private static List<Pessoa> listaPessoas = new ArrayList<>();
+    private static List<Pessoaentity> listaPessoaentities = new ArrayList<>();
     private AtomicInteger COUNTER = new AtomicInteger();
 
     public PessoaRepository() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); //18/10/2020
-        listaPessoas.add(new Pessoa(COUNTER.incrementAndGet() /*1*/, "Maicon Gerardi", LocalDate.parse("10/10/1990", formatter), "12345678910"));
-        listaPessoas.add(new Pessoa(COUNTER.incrementAndGet() /*2*/, "Charles Pereira", LocalDate.parse("08/05/1985", formatter), "12345678911"));
-        listaPessoas.add(new Pessoa(COUNTER.incrementAndGet() /*3*/, "Marina Oliveira", LocalDate.parse("30/03/1970", formatter), "12345678912"));
+        listaPessoaentities.add(new Pessoaentity(COUNTER.incrementAndGet() /*1*/, "Maicon Gerardi", LocalDate.parse("10/10/1990", formatter), "12345678910"));
+        listaPessoaentities.add(new Pessoaentity(COUNTER.incrementAndGet() /*2*/, "Charles Pereira", LocalDate.parse("08/05/1985", formatter), "12345678911"));
+        listaPessoaentities.add(new Pessoaentity(COUNTER.incrementAndGet() /*3*/, "Marina Oliveira", LocalDate.parse("30/03/1970", formatter), "12345678912"));
     }
 
-    public Pessoa create(Pessoa pessoa) {
-        pessoa.setIdPessoa(COUNTER.incrementAndGet());
-        listaPessoas.add(pessoa);
-        return pessoa;
+    public Pessoaentity create(Pessoaentity pessoaentity) {
+        pessoaentity.setIdPessoa(COUNTER.incrementAndGet());
+        listaPessoaentities.add(pessoaentity);
+        return pessoaentity;
     }
 
-    public List<Pessoa> list() {
-        return listaPessoas;
+    public List<Pessoaentity> list() {
+        return listaPessoaentities;
     }
 
-    public Pessoa update(Integer id,
-                         Pessoa pessoaAtualizar) throws Exception {
-        Pessoa pessoaRecuperada = listaPessoas.stream()
-                .filter(pessoa -> pessoa.getIdPessoa().equals(id))
+    public Pessoaentity update(Integer id,
+                               Pessoaentity pessoaentityAtualizar) throws Exception {
+        Pessoaentity pessoaentityRecuperada = listaPessoaentities.stream()
+                .filter(pessoaentity -> pessoaentity.getIdPessoa().equals(id))
                 .findFirst()
                 .orElseThrow(() -> new Exception("Pessoa não econtrada"));
-        pessoaRecuperada.setCpf(pessoaAtualizar.getCpf());
-        pessoaRecuperada.setNome(pessoaAtualizar.getNome());
-        pessoaRecuperada.setDataNascimento(pessoaAtualizar.getDataNascimento());
-        return pessoaRecuperada;
+        pessoaentityRecuperada.setCpf(pessoaentityAtualizar.getCpf());
+        pessoaentityRecuperada.setNome(pessoaentityAtualizar.getNome());
+        pessoaentityRecuperada.setDataNascimento(pessoaentityAtualizar.getDataNascimento());
+        return pessoaentityRecuperada;
     }
 
     public void delete(Integer id) throws Exception {
-        Pessoa pessoaRecuperada = listaPessoas.stream()
-                .filter(pessoa -> pessoa.getIdPessoa().equals(id))
+        Pessoaentity pessoaentityRecuperada = listaPessoaentities.stream()
+                .filter(pessoaentity -> pessoaentity.getIdPessoa().equals(id))
                 .findFirst()
                 .orElseThrow(() -> new RegraDeNegocioException("Pessoa não econtrada"));
-        listaPessoas.remove(pessoaRecuperada);
+        listaPessoaentities.remove(pessoaentityRecuperada);
     }
 
-    public List<Pessoa> listByName(String nome) {
-        return listaPessoas.stream()
-                .filter(pessoa -> pessoa.getNome().toUpperCase().contains(nome.toUpperCase()))
+    public List<Pessoaentity> listByName(String nome) {
+        return listaPessoaentities.stream()
+                .filter(pessoaentity -> pessoaentity.getNome().toUpperCase().contains(nome.toUpperCase()))
                 .collect(Collectors.toList());
     }
 }
