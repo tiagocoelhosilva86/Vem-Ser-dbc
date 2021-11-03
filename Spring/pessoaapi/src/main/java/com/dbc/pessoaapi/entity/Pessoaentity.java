@@ -16,6 +16,10 @@ public class Pessoaentity {
 
     @NotEmpty
     @NotBlank
+    private String email;
+
+    @NotEmpty
+    @NotBlank
     private String nome;
 
 

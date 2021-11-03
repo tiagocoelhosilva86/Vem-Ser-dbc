@@ -13,6 +13,10 @@ public class PessoaCreateDTO {
 
         @NotEmpty
         @NotBlank
+        private String email;
+
+        @NotEmpty
+        @NotBlank
         private String nome;
 
 

@@ -17,9 +17,9 @@ public class PessoaRepository {
 
     public PessoaRepository() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); //18/10/2020
-        listaPessoaentities.add(new Pessoaentity(COUNTER.incrementAndGet() /*1*/, "Maicon Gerardi", LocalDate.parse("10/10/1990", formatter), "12345678910"));
-        listaPessoaentities.add(new Pessoaentity(COUNTER.incrementAndGet() /*2*/, "Charles Pereira", LocalDate.parse("08/05/1985", formatter), "12345678911"));
-        listaPessoaentities.add(new Pessoaentity(COUNTER.incrementAndGet() /*3*/, "Marina Oliveira", LocalDate.parse("30/03/1970", formatter), "12345678912"));
+        listaPessoaentities.add(new Pessoaentity(COUNTER.incrementAndGet() /*1*/,"tiago.coelho@dbccompany.com.br", "Maicon Gerardi", LocalDate.parse("10/10/1990", formatter), "12345678910"));
+        listaPessoaentities.add(new Pessoaentity(COUNTER.incrementAndGet() /*2*/,"tiago.coelho@dbccompany.com.br", "Charles Pereira", LocalDate.parse("08/05/1985", formatter), "12345678911"));
+        listaPessoaentities.add(new Pessoaentity(COUNTER.incrementAndGet() /*3*/,"tiago.coelho@dbccompany.com.br", "Marina Oliveira", LocalDate.parse("30/03/1970", formatter), "12345678912"));
     }
 
     public Pessoaentity create(Pessoaentity pessoaentity) {
@@ -44,12 +44,13 @@ public class PessoaRepository {
         return pessoaentityRecuperada;
     }
 
-    public void delete(Integer id) throws Exception {
+    public Pessoaentity delete(Integer id) throws Exception {
         Pessoaentity pessoaentityRecuperada = listaPessoaentities.stream()
                 .filter(pessoaentity -> pessoaentity.getIdPessoa().equals(id))
                 .findFirst()
                 .orElseThrow(() -> new RegraDeNegocioException("Pessoa não econtrada"));
         listaPessoaentities.remove(pessoaentityRecuperada);
+        return pessoaentityRecuperada;
     }
 
     public List<Pessoaentity> listByName(String nome) {
