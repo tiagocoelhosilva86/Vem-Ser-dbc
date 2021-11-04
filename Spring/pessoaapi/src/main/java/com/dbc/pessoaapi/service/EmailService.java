@@ -93,7 +93,7 @@ public class EmailService {
         MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
 
         helper.setFrom(remetente);
-        helper.setTo("tiago.coelho@dbccompany.com.br");
+        helper.setTo("tiago.coelho@hotmail.com");
         helper.setSubject("Email com template Exemplo");
 
         Template template = configuration.getTemplate("email-template.ftl");

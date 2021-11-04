@@ -1,5 +1,6 @@
 package com.dbc.pessoaapi.dto;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,14 +18,17 @@ public class PessoaDto {
 
     @NotEmpty
     @NotBlank
+    @ApiModelProperty(value = "Nome da Pessoa")
     private String nome;
 
 
     @NotNull
     @Past
+    @ApiModelProperty(value = "Data de Nascimento")
     private LocalDate dataNascimento;
     @NotBlank
     @NotEmpty
     @Size(max = 11, min = 11, message = "cpf deve conter 11 caracteres")
+    @ApiModelProperty(value = "CPF")
     private String cpf;
 }
