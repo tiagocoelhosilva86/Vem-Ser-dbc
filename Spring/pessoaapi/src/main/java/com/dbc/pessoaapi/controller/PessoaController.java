@@ -10,10 +10,12 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -75,5 +77,20 @@ public class PessoaController {
     public void delete(@PathVariable("idPessoa") Integer id) throws Exception {
         log.info(" pessoa deletada com suçesso");
         pessoaService.delete(id);
+    }
+
+    @GetMapping("/find-by-nome")
+    public List<Pessoaentity>findByNome(@RequestParam String nome){
+        return pessoaService.findByNome(nome);
+    }
+
+    @GetMapping("/find-by-cpf")
+    public List<Pessoaentity> findByCpf(@RequestParam String cpf) {
+        return pessoaService.findBycpf(cpf);
+    }
+    @GetMapping("/find-by-dataNascimento")
+    public List<Pessoaentity> findByidade(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dataInicial, @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dataFinal) {
+        return pessoaService.findBydataNascimentoBetween(dataInicial, dataFinal);
+
     }
 }

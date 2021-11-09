@@ -8,8 +8,10 @@ import com.dbc.pessoaapi.repository.PessoaRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -61,6 +63,18 @@ public class PessoaService {
     public void delete(Integer id) throws RegraDeNegocioException {
         Pessoaentity pessoa = findById(id);
         pessoaRepository.delete(pessoa);
+    }
+
+    public List<Pessoaentity> findByNome(String nome) {
+        return  pessoaRepository.findByNomeContainingIgnoreCase(nome);
+    }
+
+    public List<Pessoaentity> findBydataNascimentoBetween(LocalDate dataInicial,LocalDate dataFinal) {
+        return pessoaRepository.findBydataNascimentoBetween(dataInicial, dataFinal);
+    }
+
+    public List<Pessoaentity> findBycpf(String cpf) {
+        return pessoaRepository.findBycpf(cpf);
     }
 }
 
