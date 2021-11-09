@@ -18,8 +18,8 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 @AllArgsConstructor
 public class EnderecoDTO {
-    private Integer id;
-    private Integer idPessoa;
+
+    private Integer idEndereco;
     @NotNull
     @ApiModelProperty(value = "Tipo")
     private TipoEndereco tipo;

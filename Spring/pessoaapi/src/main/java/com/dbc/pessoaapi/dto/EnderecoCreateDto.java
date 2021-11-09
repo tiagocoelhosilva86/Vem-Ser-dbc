@@ -17,6 +17,7 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 @AllArgsConstructor
 public class EnderecoCreateDto {
+
     @NotNull
     private TipoEndereco tipo;
     @NotEmpty

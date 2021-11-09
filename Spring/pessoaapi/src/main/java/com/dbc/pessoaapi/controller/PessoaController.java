@@ -1,5 +1,6 @@
 package com.dbc.pessoaapi.controller;
 
+import com.dbc.pessoaapi.Exceptions.RegraDeNegocioException;
 import com.dbc.pessoaapi.dto.PessoaCreateDTO;
 import com.dbc.pessoaapi.dto.PessoaDto;
 import com.dbc.pessoaapi.entity.Pessoaentity;
@@ -50,12 +51,6 @@ public class PessoaController {
         return pessoaService.list();
     }
 
-    @ApiOperation(value = "lista todas as Pessoas pelo Nome")
-    @GetMapping("/byname")
-    public List<PessoaDto> listByName(@RequestParam("nome") String nome) {
-        return pessoaService.listByName(nome);
-    }
-
     @ApiOperation(value = "Atualizar uma Nova Pessoa Pelo ID Informado")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "pessoa atualizada com sucesso!"),
@@ -63,10 +58,10 @@ public class PessoaController {
             @ApiResponse(code = 500, message = "Exceção no sistema!")
     })
     @PutMapping("/{idPessoa}")
-    public PessoaDto update(@PathVariable("idPessoa") Integer id,
-                               @RequestBody @Valid PessoaCreateDTO PessoaDtoAtualizar) throws Exception {
+    public Pessoaentity update(@PathVariable("idPessoa") Integer id,
+                               @RequestBody @Valid PessoaCreateDTO PessoaDtoAtualizar) throws RegraDeNegocioException {
         log.info("iniciando atualização da pessoa");
-        PessoaDto pessoaDto =  pessoaService.update(id, PessoaDtoAtualizar);
+        Pessoaentity pessoaDto =  pessoaService.update(id, PessoaDtoAtualizar);
         log.info(" pessoa atualizada");
         return pessoaDto;
     }

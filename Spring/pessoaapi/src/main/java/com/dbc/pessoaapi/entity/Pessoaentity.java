@@ -1,44 +1,35 @@
 package com.dbc.pessoaapi.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
+import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.time.LocalDate;
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
+@Entity(name="pessoa")
 public class Pessoaentity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PESSOA_SEQUENCIA")
+    @SequenceGenerator(name = "PESSOA_SEQUENCIA",sequenceName = "seq_pessoa2",allocationSize = 1)
+    @Column(name="id_pessoa")
     private Integer idPessoa;
 
-    @NotEmpty
-    @NotBlank
+    @Column(name="email")
     private String email;
 
-    @NotEmpty
-    @NotBlank
+    @Column(name="nome")
     private String nome;
 
-
-    @NotNull
-    @Past
+    @Column(name="data_nascimento")
     private LocalDate dataNascimento;
-    @NotBlank
-    @NotEmpty
-    @Size(max = 11, min = 11)
+
+
+    @Column(name = "cpf")
     private String cpf;
 
-
-    @Override
-    public String toString() {
-        return "Pessoa{" +
-                "idPessoa=" + idPessoa +
-                ", nome='" + nome + '\'' +
-                ", dataNascimento=" + dataNascimento +
-                ", cpf='" + cpf + '\'' +
-                '}';
     }
-}

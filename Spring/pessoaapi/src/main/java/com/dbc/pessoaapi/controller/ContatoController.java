@@ -32,26 +32,16 @@ public class ContatoController {
     public List<Contatoentity> list() {
         return contatoService.list();
     }
-
+/*
     @ApiOperation(value = "Listando contato pelo numero")
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = " Listando contato pelo numero com sucesso!"),
-            @ApiResponse(code = 400, message = "voçe não tem permição para usar esse recurso"),
-            @ApiResponse(code = 500, message = "Exceção no sistema!")
-    })
-
     @GetMapping("/bynumber")
     public List<ContatoDTO> listByNumero(@RequestParam("numero") String numero){
         log.info("Listando contato pelo numero");
         return contatoService.listByNumero(numero);
-    }
+    }*/
+
     @ApiOperation(value = "Criando Contato")
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "contato atualizada com sucesso!"),
-            @ApiResponse(code = 400, message = "voçe não tem permição para usar esse recurso"),
-            @ApiResponse(code = 500, message = "Exceção no sistema!")
-    })
-    @PostMapping("/{idPessoa}")
+   @PostMapping("/{idPessoa}")
     public ContatoDTO create(@PathVariable("idPessoa")@Valid Integer id, @RequestBody @Valid ContatoDTO contatoDTO) throws Exception {
         log.info("Criado Contato");
         ContatoDTO contatoDTO1= contatoService.create(id, contatoDTO);

@@ -1,5 +1,6 @@
 package com.dbc.pessoaapi.controller;
 
+import com.dbc.pessoaapi.Exceptions.RegraDeNegocioException;
 import com.dbc.pessoaapi.dto.EnderecoCreateDto;
 import com.dbc.pessoaapi.dto.EnderecoDTO;
 import com.dbc.pessoaapi.entity.Enderecoentity;
@@ -30,7 +31,7 @@ public class EnderecoController {
             @ApiResponse(code = 500, message = "Exceção no sistema!")
     })
     @PostMapping("/{idPessoa}")
-    public EnderecoDTO create(@PathVariable("idPessoa") @Valid Integer idPessoa, @RequestBody  @Valid EnderecoDTO enderecoDTO) throws  Exception {
+    public EnderecoDTO create(@PathVariable("idPessoa") @Valid Integer idPessoa, @RequestBody  @Valid EnderecoCreateDto enderecoDTO) throws  Exception {
         log.info(" criado ");
         EnderecoDTO enderecoDTO1 =enderecoService.create(idPessoa, enderecoDTO);
         log.info("endereço criado com sucesso");
@@ -41,15 +42,15 @@ public class EnderecoController {
     @ApiOperation(value = "Lista de Endereço")
     public List<EnderecoDTO> List(){return enderecoService.list();}
 
-    @GetMapping("/{idPessoa}/pessoa")
+   /*@GetMapping("/{idPessoa}/pessoa")
     @ApiOperation(value = "Lista de Endereço Pelo id da Pessoa")
     public List<EnderecoDTO> listByPessoa(@PathVariable("idPessoa")Integer idPessoa){
         return enderecoService.listByIdPessoa(idPessoa);
-    }
+    }*/
 
     @GetMapping("/{id}")
     @ApiOperation(value = "Lista de Endereço por id")
-    public List<EnderecoDTO> listById(@PathVariable("id")Integer id){
+    public EnderecoDTO listById(@PathVariable("id")Integer id) throws RegraDeNegocioException {
         return enderecoService.listById(id);
     }
 

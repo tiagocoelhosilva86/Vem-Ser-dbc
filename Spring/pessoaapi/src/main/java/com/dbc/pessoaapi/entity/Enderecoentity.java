@@ -1,10 +1,8 @@
 package com.dbc.pessoaapi.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -14,31 +12,40 @@ import javax.validation.constraints.Size;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
+@Entity(name = "Endereco_Pessoa")
 public class Enderecoentity {
-    private Integer id;
-    private Integer idPessoa;
-    @NotNull
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Endereco_SEQUENCIA")
+    @SequenceGenerator(name = "Endereco_SEQUENCIA",sequenceName = "seq_Endereco_contato",allocationSize = 1)
+    @Column(name="id_Endereco")
+    private Integer idEndereco;
+
+
+    @Enumerated(EnumType.ORDINAL)
+    @Column(name="tipo")
     private TipoEndereco tipo;
-    @NotEmpty
-    @NotBlank
-    @Size(max=250)
+
+    @Column(name="logradouro")
     private String logradouro;
-    @NotNull
+
+    @Column(name="numero")
     private Integer numero;
-    @NotEmpty
-    @NotBlank
+
+    @Column(name="complemento")
     private String complemento;
-    @NotEmpty
-    @NotBlank
-    @Size(max = 8)
+
+    @Column(name="cep")
     private String cep;
-    @NotNull
-    @NotEmpty
-    @Size(max = 250)
+
+    @Column(name="cidade")
     private String cidade;
-    @NotNull
+
+    @Column(name="estado")
     private String estado;
-    @NotNull
+
+    @Column(name="pais")
     private String pais;
 
 
