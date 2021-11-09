@@ -29,6 +29,7 @@ public class Contatoentity {
     private Integer idPessoa;
 
     @Column(name = "tipo")
+    @Enumerated(EnumType.ORDINAL)
     private TipoContato tipoContato;
 
     @Column(name="numero")

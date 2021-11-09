@@ -4,6 +4,7 @@ import com.dbc.pessoaapi.Exceptions.RegraDeNegocioException;
 import com.dbc.pessoaapi.dto.ContatoDTO;
 import com.dbc.pessoaapi.dto.PessoaDto;
 import com.dbc.pessoaapi.entity.Contatoentity;
+import com.dbc.pessoaapi.entity.TipoContato;
 import com.dbc.pessoaapi.repository.ContatoRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
@@ -27,6 +28,12 @@ public class ContatoService {
         Contatoentity contatoentity = objectMapper.convertValue(contatoDTO, Contatoentity.class);
         if (contatoentity.getIdPessoa() == 0 || contatoentity.getIdPessoa() ==  null){
             throw new  RegraDeNegocioException("campo não pode ser 0 ou null");
+
+        }
+
+        if (!contatoentity.getTipoContato().equals(TipoContato.COMERCIAL) && !contatoentity.getTipoContato().equals(TipoContato.RESIDENCIAL )){
+
+            throw new  RegraDeNegocioException("campo não pode ser Diferente de Residencial,Comercial");
         }
         Contatoentity contatoCriada = contatoRepository.save(contatoentity);
 
