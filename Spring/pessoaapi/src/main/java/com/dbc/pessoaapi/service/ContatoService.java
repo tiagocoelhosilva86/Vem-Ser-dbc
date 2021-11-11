@@ -26,10 +26,10 @@ public class ContatoService {
     public ContatoDTO create(Integer id,ContatoDTO contatoDTO) throws Exception {
 
         Contatoentity contatoentity = objectMapper.convertValue(contatoDTO, Contatoentity.class);
-        if (contatoentity.getIdPessoa() == 0 || contatoentity.getIdPessoa() ==  null){
+        /*if (contatoentity.getPessoaentity().getIdPessoa() == 0 || contatoentity.getPessoaentity().getIdPessoa() ==  null){
             throw new  RegraDeNegocioException("campo não pode ser 0 ou null");
 
-        }
+        }*/
 
         if (!contatoentity.getTipoContato().equals(TipoContato.COMERCIAL) && !contatoentity.getTipoContato().equals(TipoContato.RESIDENCIAL )){
 
@@ -50,9 +50,9 @@ public class ContatoService {
 
     public ContatoDTO update(Integer id, ContatoDTO contatoDTO) throws Exception {
         Contatoentity contatoentity = objectMapper.convertValue(contatoDTO, Contatoentity.class);
-        if (contatoentity.getIdPessoa() == 0 || contatoentity.getIdPessoa() ==  null){
+        /*if (contatoentity.getIdPessoa() == 0 || contatoentity.getIdPessoa() ==  null){
             throw new  RegraDeNegocioException("campo não pode ser 0 ou null");
-        }
+        }*/
         contatoentity.setIdContato(id);
         Contatoentity contatoentity1= contatoRepository.save( contatoentity);
 
@@ -72,4 +72,13 @@ public class ContatoService {
                 .collect(Collectors.toList());
     }*/
 
+    public List<ContatoDTO> listPorTipo(TipoContato tipoContato) {
+        return contatoRepository.porTipodeContato(tipoContato).stream()
+                .map(contato -> objectMapper.convertValue(contato,ContatoDTO.class))
+                .collect(Collectors.toList());
+    }
+
+    public List<Contatoentity> procurarPoridPessoa(Integer id) {
+        return  contatoRepository.procurarPoridPessoa(id);
+    }
 }

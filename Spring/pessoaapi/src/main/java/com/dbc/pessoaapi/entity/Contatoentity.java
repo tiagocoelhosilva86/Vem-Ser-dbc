@@ -1,5 +1,6 @@
 package com.dbc.pessoaapi.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,9 +26,6 @@ public class Contatoentity {
     @Column(name="id_contato")
     private Integer idContato;
 
-    @Column(name="id_Pessoa")
-    private Integer idPessoa;
-
     @Column(name = "tipo")
     @Enumerated(EnumType.ORDINAL)
     private TipoContato tipoContato;
@@ -37,5 +35,10 @@ public class Contatoentity {
 
     @Column(name="descricao")
     private String descricao;
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_pessoa",referencedColumnName = "id_pessoa")
+    private Pessoaentity pessoaentity;
 
 }

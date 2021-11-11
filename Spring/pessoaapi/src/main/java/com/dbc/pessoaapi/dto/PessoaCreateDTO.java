@@ -8,7 +8,7 @@ import javax.validation.constraints.*;
 import java.time.LocalDate;
 
 @Getter
-@Setter
+@Setter  /*Metodo CreatDto Atributos que Serão Inserido no Banco   */
 public class PessoaCreateDTO {
         private Integer idPessoa;
 
@@ -30,7 +30,7 @@ public class PessoaCreateDTO {
         @NotBlank
         @NotEmpty
         @Size(max = 11, min = 11, message = "cpf deve conter 11 caracteres")
-        @ApiModelProperty(value = "CPF")
+        @ApiModelProperty(value = "cpf")
         private String cpf;
     }
 

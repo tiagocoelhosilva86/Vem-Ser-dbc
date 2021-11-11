@@ -1,22 +1,23 @@
 package com.dbc.pessoaapi.service;
 
 import com.dbc.pessoaapi.Exceptions.RegraDeNegocioException;
-import com.dbc.pessoaapi.dto.PessoaCreateDTO;
-import com.dbc.pessoaapi.dto.PessoaDto;
+import com.dbc.pessoaapi.dto.*;
+import com.dbc.pessoaapi.entity.Enderecoentity;
 import com.dbc.pessoaapi.entity.Pessoaentity;
 import com.dbc.pessoaapi.repository.PessoaRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
+@RequiredArgsConstructor /* Metodo Service Adicionar As Regras DE Negocio da Aplicação   */
 public class PessoaService {
 
     private  final PessoaRepository pessoaRepository;
@@ -73,8 +74,96 @@ public class PessoaService {
         return pessoaRepository.findBydataNascimentoBetween(dataInicial, dataFinal);
     }
 
-    public List<Pessoaentity> findBycpf(String cpf) {
+    public List<Pessoaentity> findByCpf(String cpf) {
         return pessoaRepository.findBycpf(cpf);
+    }
+
+    public List<PessoaComEnderecoDTO> findWithenderecos(Integer id) {
+        List<Pessoaentity> pessoaentities = new ArrayList<>() ;
+        if (id == null) {
+            pessoaentities = pessoaRepository.findAll();
+        }else {
+           List<Integer> ids= new ArrayList<>();
+            ids.add(id);
+            pessoaentities =  pessoaRepository.findAllById(ids);
+
+        }
+
+        return pessoaentities.stream().map(
+                        pessoaentity -> {
+                            PessoaComEnderecoDTO pessoaComEnderecoDTO = objectMapper.convertValue(pessoaentity, PessoaComEnderecoDTO.class);
+                            Set<EnderecoDTO> enderecoDTOS = pessoaentity.getEnderecos().stream()
+                                     .map(enderecoentity ->  objectMapper.convertValue(enderecoentity, EnderecoDTO.class)).collect(Collectors.toSet());
+                            pessoaComEnderecoDTO.setEnderecoDTOS(enderecoDTOS);
+                            return  pessoaComEnderecoDTO;
+                        }
+                ).toList();
+
+
+    }
+
+    public List<PessoaComContatoDTO> findWithcontato(Integer id) {
+
+        List<Pessoaentity> pessoaentities = new ArrayList<>() ;
+        if (id == null) {
+            pessoaentities = pessoaRepository.findAll();
+        }else {
+            List<Integer> ids= new ArrayList<>();
+            ids.add(id);
+            pessoaentities =  pessoaRepository.findAllById(ids);
+
+        }
+
+        return pessoaentities.stream().map(
+                pessoaentity -> {
+                    PessoaComContatoDTO pessoaComContatoDTO = objectMapper.convertValue(pessoaentity, PessoaComContatoDTO.class);
+                    Set<ContatoDTO> contatoDTO = pessoaentity.getContatos().stream()
+                            .map(contatoentity ->  objectMapper.convertValue(contatoentity, ContatoDTO.class)).collect(Collectors.toSet());
+                    pessoaComContatoDTO.setContatoDTOS(contatoDTO);
+                    return  pessoaComContatoDTO;
+                }
+        ).toList();
+
+    }
+
+    public List<PessoaComEnderecoContato> findWithEndecoContato(Integer id) {
+        List<Pessoaentity> pessoaentities = new ArrayList<>() ;
+        if (id == null) {
+            pessoaentities = pessoaRepository.findAll();
+        }else {
+            List<Integer> ids= new ArrayList<>();
+            ids.add(id);
+            pessoaentities =  pessoaRepository.findAllById(ids);
+
+        }
+
+        return pessoaentities.stream().map(
+                pessoaentity -> {
+                    PessoaComEnderecoContato pessoaComEnderecoContato = objectMapper.convertValue(pessoaentity, PessoaComEnderecoContato.class);
+                    Set<ContatoDTO> contatoDTO = pessoaentity.getContatos().stream()
+                            .map(contatoentity ->  objectMapper.convertValue(contatoentity, ContatoDTO.class)).collect(Collectors.toSet());
+                    pessoaComEnderecoContato.setContatoDTOS(contatoDTO);
+                    Set<EnderecoDTO> enderecoDTOS = pessoaentity.getEnderecos().stream()
+                            .map(enderecoentity ->  objectMapper.convertValue(enderecoentity, EnderecoDTO.class)).collect(Collectors.toSet());
+                    pessoaComEnderecoContato.setEnderecoDTOS(enderecoDTOS);
+                    return  pessoaComEnderecoContato;
+                }
+        ).toList();
+
+
+    }
+
+    public List<Pessoaentity> porDataDeNascimentoEntreDuasDatas(LocalDate dataInicial,LocalDate dataFinal) {
+        return pessoaRepository.porDataDeNascimentoEntreDuasDatas(dataInicial, dataFinal);
+    }
+
+
+    public List<Pessoaentity> quePossuemEndereco() {
+        return pessoaRepository.procuraPossuemEndereco();
+    }
+
+    public List<Pessoaentity> procuraSemEndereco() {
+        return pessoaRepository.procuraSemEndereco();
     }
 }
 

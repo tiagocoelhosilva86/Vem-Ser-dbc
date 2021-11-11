@@ -25,8 +25,8 @@ public interface DadosPessoaisClient {
     @RequestLine("PUT /dados-pessoais/{cpf}")
     DadosPessoaisDTO put(@Param("cpf") String cpf, @RequestBody DadosPessoaisDTO dadosPessoaisDTO);
 
-    @RequestLine("DELETE /dados-pessoais/{cpf}")
-    void delete(@Param("cpf") String cpf);
+    @RequestLine("DELETE /dados-pessoais/{Cpf}")
+    void delete(@Param("Cpf") String cpf);
 
 
 

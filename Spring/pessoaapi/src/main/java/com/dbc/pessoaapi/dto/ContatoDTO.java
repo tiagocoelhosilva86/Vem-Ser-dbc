@@ -1,5 +1,6 @@
 package com.dbc.pessoaapi.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,6 +14,7 @@ import javax.validation.constraints.Size;
 public class ContatoDTO {
 
     private Integer idContato;
+    @JsonIgnoreProperties
     private Integer idPessoa;
 
     @NotEmpty

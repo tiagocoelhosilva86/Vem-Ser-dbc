@@ -2,6 +2,7 @@ package com.dbc.pessoaapi.controller;
 
 import com.dbc.pessoaapi.dto.ContatoDTO;
 import com.dbc.pessoaapi.entity.Contatoentity;
+import com.dbc.pessoaapi.entity.TipoContato;
 import com.dbc.pessoaapi.service.ContatoService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -75,5 +76,20 @@ public class ContatoController {
         return contatoDTO1;
 
     }
+    @ApiOperation(value = "Listando contato pelo tipo")
+    @GetMapping("/porTipo")
+    public List<ContatoDTO> listPorTipo(@RequestParam("tipo") TipoContato tipo){
+        return contatoService.listPorTipo(tipo);
+    }
+
+
+    @ApiOperation(value = "Listando contato pelo id pessoa")
+    @GetMapping("/procurar-por-id-pessoa")
+    public List<Contatoentity> procurarPoridPessoa(@RequestParam("idPessoa") Integer id){
+        return contatoService.procurarPoridPessoa(id);
+    }
+
+
+
 
 }

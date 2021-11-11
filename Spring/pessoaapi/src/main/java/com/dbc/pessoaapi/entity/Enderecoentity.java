@@ -1,5 +1,6 @@
 package com.dbc.pessoaapi.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -7,6 +8,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -47,6 +49,19 @@ public class Enderecoentity {
 
     @Column(name="pais")
     private String pais;
+
+   /*@ManyToMany(mappedBy = "enderecos")
+    private Set<Pessoaentity> pessoas;*/
+
+
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "Pessoa_x_Pessoa_Endereco",joinColumns = @JoinColumn(name = "id_endereco"),
+            inverseJoinColumns = @JoinColumn(name = "id_pessoa")
+    )
+    private Set<Pessoaentity> pessoas;
+
+
 
 
 }

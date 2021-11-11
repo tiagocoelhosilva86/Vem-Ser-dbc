@@ -72,6 +72,23 @@ public class EnderecoService {
          return enderecoDTO;
     }
 
+    public List<EnderecoDTO> listByPais(String pais) {
+        return enderecoRepository.procurarPorPais(pais).stream()
+                .map(enderecoentity -> objectMapper.convertValue(enderecoentity, EnderecoDTO.class)).toList();
+    }
+
+    public List<EnderecoDTO> listByIdPessoa(Integer idPessoa) {
+        return enderecoRepository.procurarPoridpessoa(idPessoa).stream()
+                .map(enderecoentity -> objectMapper.convertValue(enderecoentity, EnderecoDTO.class)).toList();
+    }
+
+    public List<Enderecoentity> listByPaisOrCidade(String cidadePais) {
+        return enderecoRepository.procurarPorCidadeOuPais(cidadePais);
+    }
+
+    public List<Enderecoentity> procurarSemComplemento() {
+        return enderecoRepository.procurarSemComplemento();
+    }
 }
 
 

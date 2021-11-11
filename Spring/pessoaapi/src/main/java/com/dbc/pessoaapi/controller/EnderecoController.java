@@ -84,4 +84,31 @@ public class EnderecoController {
 
     }
 
+
+   @GetMapping("/porPais/{pais}")
+    @ApiOperation(value = "Lista de Endereço Pelo pais")
+    public List<EnderecoDTO> procurarPorPais(@PathVariable("pais")String pais){
+        return enderecoService.listByPais(pais);
+    }
+
+    @GetMapping("/poridPessoa/{idPessoa}")
+    @ApiOperation(value = "Lista de Endereço Pelo pais")
+    public List<EnderecoDTO> procurarPoridpessoa(@PathVariable("idPessoa")Integer idPessoa){
+        return enderecoService.listByIdPessoa(idPessoa);
+    }
+
+
+
+    @GetMapping("/por-pais-cidade")
+    @ApiOperation(value = "Lista de Endereço Pelo pais ou cidade")
+    public List<Enderecoentity> procurarPorPaisCidade(@RequestParam("paisCidade")String paisCidade){
+        return enderecoService.listByPaisOrCidade(paisCidade);
+    }
+
+
+    @GetMapping("/sem-complemento")
+    @ApiOperation(value = "Lista de Endereço sem complemento")
+    public List<Enderecoentity> procurarSemComplemento(){
+        return enderecoService.procurarSemComplemento();
+    }
 }
