@@ -11,7 +11,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 @Repository
-public class EnderecoRepository {
+public interface EnderecoRepository {
     private static List<Enderecoentity> enderecoentityList = new ArrayList<Enderecoentity>();
     private AtomicInteger COUNTERPESSOA = new AtomicInteger();
     private AtomicInteger COUNTERPESSOAENDERECO = new AtomicInteger();

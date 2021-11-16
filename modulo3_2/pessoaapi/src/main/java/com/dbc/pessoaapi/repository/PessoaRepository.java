@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 @Repository
-public class PessoaRepository {
+public interface PessoaRepository {
     private static List<Pessoaentity> listaPessoaentities = new ArrayList<>();
     private AtomicInteger COUNTER = new AtomicInteger();
 

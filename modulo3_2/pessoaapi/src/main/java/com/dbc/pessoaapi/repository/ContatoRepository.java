@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 @Repository
-public class ContatoRepository {
+public interface ContatoRepository {
     private static List<Contatoentity> listaContato = new ArrayList<Contatoentity>();
     private AtomicInteger COUNTERPESSOA = new AtomicInteger();
     private AtomicInteger COUNTERCONTATO = new AtomicInteger();
