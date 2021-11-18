@@ -1,8 +1,11 @@
 package com.dbc.pessoaapi.controller;
 
 import com.dbc.pessoaapi.dto.LoginDTO;
+import com.dbc.pessoaapi.dto.UsuarioCreateDTO;
+import com.dbc.pessoaapi.dto.UsuarioDTO;
 import com.dbc.pessoaapi.entity.UsuarioEntity;
 import com.dbc.pessoaapi.security.security.TokenService;
+import com.dbc.pessoaapi.service.UsuarioService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -19,12 +22,13 @@ import javax.validation.Valid;
 @RequestMapping("/auth")
 @Validated
 @RequiredArgsConstructor
-public class Autorizacao {
+public class AuthController {
     private final AuthenticationManager authenticationManager;
     private final TokenService tokenService;
+    private final UsuarioService usuarioService;
 
     @PostMapping
-    public String LoginUsuario(@RequestBody @Valid LoginDTO loginDTO) {
+    public String auth(@RequestBody @Valid LoginDTO loginDTO) {
         UsernamePasswordAuthenticationToken user =
                 new UsernamePasswordAuthenticationToken(
                         loginDTO.getUsuario(),
@@ -35,5 +39,10 @@ public class Autorizacao {
 
         String token = tokenService.generateToken((UsuarioEntity) authenticate.getPrincipal());
         return token;
+    }
+
+    @PostMapping("/create")
+    public UsuarioDTO postUsuario(@RequestBody UsuarioCreateDTO usuarioCreateDTO) {
+        return usuarioService.create(usuarioCreateDTO);
     }
 }

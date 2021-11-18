@@ -1,10 +1,10 @@
 package com.dbc.pessoaapi.security.security;
 
+import io.swagger.models.HttpMethod;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -31,9 +31,25 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.headers().frameOptions().disable().and().cors().and()
                 .csrf().disable()
                 .authorizeRequests()
+
                 .antMatchers("/").permitAll()
-                .antMatchers("/auth").permitAll()
+                .antMatchers("/auth/**").permitAll()
 //                .antMatchers("/contato").permitAll()
+                // =
+//                .antMatchers("/", "/auth", "/contato").permitAll()
+
+
+                .antMatchers(String.valueOf(HttpMethod.POST),"/AUTH/CREATE").hasRole("ADMIN")
+
+                .antMatchers(String.valueOf(HttpMethod.GET), "/pessoa/**","/contato/**","/endereco/**").hasAnyRole("MARKETING", "USUARIO", "ADMIN") //ROLE_MARKETING
+
+                .antMatchers("/pessoa/**","/contato/**","/endereco/**").hasRole("USUARIO") //ROLE_USUARIO
+
+
+                .antMatchers("/**").hasRole("ADMIN") //ROLE_ADMIN
+
+
+
 
                 .anyRequest().authenticated()
 
@@ -47,7 +63,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/v2/api-docs",
                 "/swagger-ui.html",
                 "/swagger-resources/**"
-                );
+        );
     }
 
     @Bean
