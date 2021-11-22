@@ -1,0 +1,91 @@
+
+
+
+db.Hoteis.insertOne(
+    {
+        "nome" : "Hotel Brasil",
+        "quantidade_quartos":[20],
+        "localizacao": "Recife,Pernanbuco",
+        "data_criacao" : new Date(),
+        "classificacao_estrelas":[5]
+        
+    }
+)
+{ acknowledged: true,
+  insertedId: ObjectId("619c05a78bff65a4b9f99de4") }
+db.Hoteis.insertOne(
+    {
+        "nome" : "Hotel Boa Vista",
+        "quantidade_quartos":[5],
+        "localizacao": "Caruaru Pernanbuco",
+        "data_criacao" : new Date (),
+        "Classificacao_Estrelas":[2]
+        
+    }
+)
+{ acknowledged: true,
+  insertedId: ObjectId("619c062b8bff65a4b9f99de5") }
+db.Hoteis.insertOne(
+    {
+        "nome" : "Hotel Blue",
+        "quantidade_quartos":[10],
+        "localizacao": "Boa viagem Pernanbuco",
+        "data_criacao" : new Date (),
+        "Classificacao_Estrelas":[5]
+        
+    }
+)
+{ acknowledged: true,
+  insertedId: ObjectId("619c06668bff65a4b9f99de6") }
+db.Hoteis.insertOne(
+    {
+        "nome" : "Hotel Br",
+        "quantidade_quartos":[15],
+        "localizacao": "Olinda,Pernanbuco",
+        "data_criacao" : new Date (),
+        "Classificacao_Estrelas":[5]
+        
+    }
+)
+{ acknowledged: true,
+  insertedId: ObjectId("619c06a28bff65a4b9f99de7") }
+db.Quartos.insertOne(
+    {
+        "quarto casal" : "Hotel Brasil",
+        "diferencial": "tv,cama dupla"
+        
+    }
+)
+{ acknowledged: true,
+  insertedId: ObjectId("619c08158bff65a4b9f99de8") }
+db.Quartos.insertOne(
+    {
+        "quarto casal" : "Hotel Boa Vista",
+        "diferencial": "tv,cama dupla"
+        
+    }
+)
+{ acknowledged: true,
+  insertedId: ObjectId("619c08508bff65a4b9f99de9") }
+db.Quartos.insertOne(
+    {
+        "quarto casal" : "Hotel Blue",
+        "diferencial": "tv,cama dupla"
+        
+    }
+)
+{ acknowledged: true,
+  insertedId: ObjectId("619c08628bff65a4b9f99dea") }
+db.Quartos.insertOne(
+    {
+        "quarto casal" : "Hotel Br",
+        "diferencial": "tv,cama dupla"
+        
+    }
+)
+{ acknowledged: true,
+  insertedId: ObjectId("619c08718bff65a4b9f99deb") }
+db.Hoteis.deleteOne( { "_id" : ObjectId("619c06a28bff65a4b9f99de7") } );
+{ acknowledged: true, deletedCount: 1 }
+db.Quartos.deleteOne( { "_id" : ObjectId("619c08718bff65a4b9f99deb") } );
+{ acknowledged: true, deletedCount: 1 }
