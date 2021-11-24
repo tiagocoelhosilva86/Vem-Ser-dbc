@@ -1,0 +1,142 @@
+ 
+
+criação hoteis
+-----------------------------------------------------------------------------------------------------------
+
+
+ Insert Many
+
+db.Hoteis.insertMany([
+  { "Hotel": "Boa Viagem","Quartos": 40, "Tipo": { "quarto": "Casal" }, "Estrela": [10],"status": "A"},
+  { "Hotel": "Beira Mar","Quartos": 26, "Tipo": { "quarto": "Solteiro" }, "Estrela": [8],"status": "B"},
+  { "Hotel": "Ibis", "Quartos": 25, "Tipo": { "quarto": "Casal" }, "Estrela": [8],"status": "C"},
+  { "Hotel": "Lua Bela","Quartos": 23, "Tipo": { "quarto": "Solteiro" }, "Estrela": [8],"status": "D"},
+  { "Hotel": "Boa Vista","Quartos": 27, "Tipo": { "quarto": "Casal" }, "Estrela": [10],"status": "E"},
+  { "Hotel": "Beira Rio","Quartos": 26, "Tipo": { "quarto": "Casal" }, "Estrela": [9],"status": "F"},
+  { "Hotel": "Progresso","Quartos": 25, "Tipo": { "quarto": "Casal" }, "Estrela": [6],"status": "G"},
+  { "Hotel": "Tres Marias","Quartos": 23, "Tipo": { "quarto": "Solteiro" }, "Estrela": [8],"status": "H"},
+  { "Hotel": "Coração","Quartos": 25, "Tipo": { "quarto": "Casal" }, "Estrela": [6],"status": "I"},
+  { "Hotel": "Lua","Quartos": 23, "Tipo": { "quarto": "Solteiro" }, "Estrela": [8],"status": "J"}
+])
+------------------------------------------------------------------------------------------------------------
+db.Hoteis.find({
+    "status": "D"
+})
+
+db.Hoteis.find({
+    "status": "A"
+})
+---------------------------------------------
+db.Hoteis.find({
+    "tipo": {quarto: "Casal", "Estrela":[10]}
+})
+
+db.Hoteis.find({
+    "tipo": {quarto: "Solteiro", "Estrela":[8]}
+})
+------------------------------------------------
+db.Hoteis.find(
+{ status: "A", Quartos: { $gt: 40 } })
+
+db.Hoteis.find(
+{ status: "B", Quartos: { $gt: 26 } })
+-------------------------------------------------
+db.Hoteis.find({
+ status: { $in: [ "A", "B","C","D" ] } 
+
+})
+----------------------------------------------------
+db.Hoteis.find({
+    "Hotel" : "Boa Viagem",
+    Quartos: { $gte: 40 },
+    $or : [
+        {"quarto" : "Casal"} 
+    ]
+ })
+-----------------------------------------------------
+db.Hoteis.find(
+{ Hotel: /^Bo/ })
+----------------------------------------------------
+db.Hoteis.find({
+   "Tipo.quarto" : "Solteiro"
+})
+-----------------------------------------------------
+db.Hoteis.updateOne(
+   { Hotel: "Lua" },
+   {
+     $set: { "nome": "Love", status: "X",Estrela: [8]}           
+   }
+)
+-----------------------------------------------------------
+db.Hoteis.deleteOne( { status: "X"})
+----------------------------------------------------------
+
+
+
+
+Criação Quartos
+
+
+ Insert Many
+db.Quartos.insertMany([
+  { "Quartos": "Hotel Boa Viagem","Quarto numero": [1],"Tipo": { "quarto": "Casal" }, "diferencial":"frigobar","status": "A"},
+  { "Quartos": "Hotel Beira Mar","Quarto numero": [2],"Tipo": { "quarto": "Solteiro" }, "diferencial": "cama dupla","status": "B"},
+  { "Quartos": "Hotel Ibis","Quarto numero": [3],"Tipo": { "quarto": "Casal" }, "diferencial": "ar","status": "C"},
+  { "Quartos": "Hotel Lua Bela","Quarto numero": [4],"Tipo": { "quarto": "Solteiro" }, "diferencial":"frigobar,bicama","status": "D"},
+  { "Quartos": "Hotel Boa Vista","Quarto numero": [5],"Tipo": { "quarto": "Casal" }, "diferencial": "ar","status": "E"},
+  { "Quartos": "Hotel Beira Rio","Quarto numero": [6],"Tipo": { "quarto": "Casal" }, "diferencial": "frigobar","status": "F"},
+  { "Quartos": "Hotel Progresso","Quarto numero": [7],"Tipo": { "quarto": "Casal" }, "diferencial": "ventilador","status": "G"},
+  { "Quartos": "Hotel Tres Marias","Quarto numero": [8],"Tipo": { "quarto": "Solteiro" }, "diferencial":"cafe da manhan","status": "H"},
+  { "Quartos": "Hotel Coração","Quarto numero": [9],"Tipo": { "quarto": "Casal" }, "diferencial":"janta","status": "I"},
+  { "Quartos": "Hotel Lua","Quarto numero": [10],"Tipo": { "quarto": "Solteiro" }, "diferencial": "cafeda manhan,janta","status": "J"}
+])
+---------------------------------------------------------------------------------------------------------------------------------------------
+db.Quartos.find({
+    "status": "D"
+})
+
+db.Quartos.find({
+    "status": "A"
+})
+---------------------------------------------------------------------------------------------------------------------------------------------
+db.Quartos.find({
+    "Tipo": { "quarto": "Casal" }
+})
+
+db.Quartos.find({
+    "Tipo": {quarto: "Solteiro"}
+})
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+db.Quartos.find(
+{ "Quarto numero": { $gt:2 } })
+
+------------------------------------------------------------------------------------------------------------------------------------------
+db.Quartos.find({
+ status: { $in: [ "A", "B","C","D" ] } 
+
+})
+------------------------------------------------------------------------------------------------------------------------------------------
+db.Quartos.find({
+    "Quarto numero": { $gte: [10] },
+    $or : [
+        {"Tipo":{"quarto":"Solteiro"}}
+    ]
+ })
+--------------------------------------------------------------------------------------------------------------------------------------------
+db.Quartos.find(
+{ diferencial: /^ca/ })
+--------------------------------------------------------------------------------------------------------------------------------------------
+db.Quartos.find({
+   "Tipo.quarto" : "Solteiro"
+})
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+db.Quartos.updateOne(
+   { "Quarto numero": [1] },
+   {
+     $set: { "tipo": "basico", status: "X"}           
+   }
+)
+---------------------------------------------------------------------------------------------------------------------------------------------
+db.Quartos.deleteOne( { status: "J"})
