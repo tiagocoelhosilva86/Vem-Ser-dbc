@@ -1,0 +1,97 @@
+HOTEIS
+
+db.Hoteis.find({
+    Quartos: { $gte: 26 } 
+}).sort("Hotel")
+
+
+db.Hoteis.find({ }).sort( { Quartos : 1, status: -1 } )
+--------------------------------------------------------------------------------------------------------
+db.Hoteis.find({_id: ObjectId("619d4af280af846a6250b837")})
+
+db.Hoteis.find({ }).sort( { _id: -1 } )
+
+---------------------------------------------------------------------------------------------------------
+
+db.Hoteis.find({ status: "A" }).sort( { _id : -1 } ).limit(2)
+
+-------------------------------------------------------------------------------------------------------
+db.Hoteis.find({
+    Quartos: { $lt: 4 } 
+})
+-------------------------------------------------------------------------------------------------------
+db.Hoteis.find( { Estrela: [10] } )
+
+db.Hoteis.find( { Estrela: { $all: [10] } } )
+
+db.Hoteis.find( { "Hotel": "Boa Viagem" } )
+
+db.Hoteis.find( { Quartos: { $gt: 23 } } )
+
+db.Hoteis.find( { Estrela: { $lt: 20 } } )
+
+db.Hoteis.find( { Estrela: { $gt: 1, $lt: 8 } } )
+
+db.Hoteis.find( { Estrela: { $elemMatch: { $gt: 4, $lt: 6 } } } )
+
+db.Hoteis.find( { Estrela: { $size: 1 } } )
+------------------------------------------------------------------------------------------------------------
+
+db.Hoteis.find( {}, { Quartos: 1, "size.uom": 1 } )
+
+
+db.Hoteis.aggregate( [
+   { $match: { status: "Ocupado" } },
+   { $group: {_id: "$Quarto", sumQuantity: { $sum: "$quantity" } } }
+] )
+------------------------------------------------------------------------------------------------------------
+
+
+Quartos
+
+
+
+db.Quartos.find({
+    "Quarto numero": { $gte:9 } 
+}).sort("status")
+
+db.Quartos.find({ }).sort( { Quartos : 1, status: -1 } )
+-------------------------------------------------------------------------------------------------------------
+
+db.Quartos.find({_id: 4 })
+
+db.Quartos.find({ }).sort( { _id: -1 } )
+-----------------------------------------------------------------------------------------------------------------
+
+db.Quartos.find({ status: "Ocupado" }).sort( { _id : -1 } ).limit(2)
+
+----------------------------------------------------------------------------------------------------------------
+
+db.Quartos.find({
+    "Quarto numero": { $lt: 10 } 
+})
+----------------------------------------------------------------------------------------------------------------
+db.Quartos.find( { Quarto: "Casal" } )
+
+db.Quartos.find( { "Quarto numero": { $all: [9] } } )
+
+db.Quartos.find( { "status": "livre" } )
+
+db.Quartos.find( { "Quarto numero": { $gt: 5 } } )
+
+db.Quartos.find( { "Quarto numero": { $lt: 10 } } )
+
+db.Quartos.find( { "Quarto numero": { $gt: 1, $lt: 8 } } )
+
+db.Quartos.find( { "Quarto numero": { $elemMatch: { $gt: 4, $lt: 6 } } } )
+
+db.Quartos.find( { "Quarto numero": { $size: 1 } } )
+
+-----------------------------------------------------------------------------------------------------------------
+
+db.Quartos.find( {}, { "Quarto numero": 1, "size.uom": 1 } )
+
+db.Quartos.aggregate( [
+   { $match: { status: "Ocupado" } },
+   { $group: {_id: "$Quarto", sumQuantity: { $sum: "$quantity" } } }
+] )
