@@ -1,0 +1,72 @@
+import com.mongodb.MongoClient;
+import com.mongodb.MongoCredential;
+import com.mongodb.ServerAddress;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import org.bson.Document;
+import static com.mongodb.client.model.Filters.eq;
+import com.mongodb.client.MongoClients;
+import com.mongodb.client.model.Projections;
+import com.mongodb.client.model.UpdateOptions;
+import com.mongodb.client.model.Updates;
+import com.mongodb.client.result.DeleteResult;
+import com.mongodb.client.result.UpdateResult;
+import org.bson.conversions.Bson;
+import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.Date;
+
+
+public class Main {
+    private static MongoCollection<Document> alunos;
+
+    public static void main(String[] args) {
+        // credencial (login)
+        MongoCredential credential = MongoCredential.createCredential("root", "admin", "root".toCharArray());
+        MongoClient cliente = new MongoClient(new ServerAddress("localhost", 27017), Arrays.asList(credential));
+        MongoDatabase db = cliente.getDatabase("Vemserdbc");
+        alunos = db.getCollection("alunos_java");
+        // insertOne
+        Document result = new Document("nome", "Tiago")
+                .append("data_nascimento", LocalDate.of(1986, 02, 03))
+                .append("curso", new Document("nome", "Analise E Desenvolvimento De Sistemas"))
+                .append("notas", Arrays.asList(5, 7, 10))
+                .append("habilidades", Arrays.asList(
+                        new Document()
+                                .append("nome", "ingles")
+                                .append("nível", "Basico"),
+                        new Document()
+                                .append("nome", "Fisica")
+                                .append("nível", "Basico")));
+
+        alunos.insertOne(result);
+
+        // updateOne
+        Document query = new Document().append("nome", "Ana");
+        Bson updates = Updates.combine(
+                Updates.set("nome", "Diego Coelho Da Silva Atualizado"),
+                Updates.set("idade", 35));
+        UpdateOptions options = new UpdateOptions().upsert(true);
+        UpdateResult result2 = alunos.updateOne(query, updates, options);
+
+        System.out.println("Modified document count: " + result2.getModifiedCount());
+        System.out.println("Upserted id: " + result2.getUpsertedId());
+
+         //findOne
+        Bson projectionFields = Projections.fields(
+                Projections.include("nome", "idade"),
+                Projections.excludeId());
+
+        Document doc = alunos.find(eq("nome", "Tiago"))
+                .projection(projectionFields)
+                .first();
+
+        System.out.println(doc);
+
+        // deleteOne
+        Bson query2 = eq("nome", "Diego Coelho Da Silva Atualizado");
+        DeleteResult result3 = alunos.deleteOne(query2);
+        System.out.println("Deleted document count: " + result3.getDeletedCount());
+
+    }
+}
