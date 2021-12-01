@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 
@@ -16,11 +17,12 @@ public class ChatMensenger {
 
 
     @ApiModelProperty(value = "Data atual")
-    private LocalDateTime data;
+    @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+    private LocalDateTime dataCriacao;
 
     @ApiModelProperty(value = "Tiago")
     private String usuario;
 
     @ApiModelProperty(value = "mensagem enviada ão usuario ")
-    private  String mensagen;
+    private  String mensagem;
 }

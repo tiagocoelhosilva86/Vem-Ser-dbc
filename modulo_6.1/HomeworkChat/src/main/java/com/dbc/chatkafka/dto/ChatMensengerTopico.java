@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.time.temporal.TemporalAccessor;
 
 @Getter
 @Setter
@@ -15,4 +16,7 @@ import java.time.LocalDateTime;
 public class ChatMensengerTopico extends ChatMensenger {
 
     private String topico;
+
+
+
 }
