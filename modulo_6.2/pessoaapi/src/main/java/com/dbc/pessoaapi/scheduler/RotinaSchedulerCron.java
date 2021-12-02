@@ -1,6 +1,8 @@
 package com.dbc.pessoaapi.scheduler;
 
+import com.dbc.pessoaapi.dto.EmailDTO;
 import com.dbc.pessoaapi.entity.Pessoaentity;
+import com.dbc.pessoaapi.kafka.Producer;
 import com.dbc.pessoaapi.repository.PessoaRepository;
 import com.dbc.pessoaapi.service.EmailService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -24,6 +26,7 @@ public class RotinaSchedulerCron {
             = new SimpleDateFormat("HH:mm:ss");
     private final PessoaRepository pessoaRepository;
     private final EmailService emailService;
+    private final Producer producer;
     private final ObjectMapper objectMapper;
 
     @Scheduled(cron = "0 0 8,20 * * *", zone = "GMT-3")
@@ -32,7 +35,39 @@ public class RotinaSchedulerCron {
         log.info("total de pessoas sem endereço {}",pessoaentityList.stream().count() );
         for (Pessoaentity pessoaentity:  pessoaentityList) {
             log.info("enviando email para {}",pessoaentity.getEmail() );
-            emailService.enviarEmailPessoaSemEndereco(pessoaentity.getEmail(), pessoaentity.getNome());
+            //emailService.enviarEmailPessoaSemEndereco(pessoaentity.getEmail(), pessoaentity.getNome());
+
+            EmailDTO emailDTO = new EmailDTO(pessoaentity.getEmail(), "Adicione o seu endereço", String.format("<html xmlns=\"http://www.w3.org/1999/xhtml\">\n" +
+                    "<head>\n" +
+                    "    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />\n" +
+                    "    <title>Java Mail</title>\n" +
+                    "</head>\n" +
+                    "\n" +
+                    "<body>\n" +
+                    "Ola ${nome}\n" +
+                    "<br>\n" +
+                    "<br>\n" +
+                    "<br>\n" +
+                    "Estamos felizes em ter você em nosso sistema :)\n" +
+                    "<br>\n" +
+                    "Para que possamos enviar-los um brinde exclusivo,por\n" +
+                    "<br>\n" +
+                    "gentileza,adicione ou atualize o seu endereço no seu cadastro.\n" +
+                    "<br>\n" +
+                    "<br>\n" +
+                    "Muito obrigado,\n" +
+                    "<br>\n" +
+                    "Sistema de Pessoas.\n" +
+                    "\n" +
+                    "<br>\n" +
+                    "<br>\n" +
+                    "att\n" +
+                    "<br>\n" +
+                    "Sistema\n" +
+                    "</body>\n" +
+                    "</html>", pessoaentity.getNome()));
+
+            producer.sendMessage(emailDTO);
         }
     }
     @Scheduled(cron = "0 0 0 23 12 ?")
@@ -41,7 +76,41 @@ public class RotinaSchedulerCron {
         log.info("total de pessoas  {}",pessoaentityList.stream().count() );
         for (Pessoaentity pessoaentity:  pessoaentityList) {
             log.info("enviando email para {}",pessoaentity.getEmail() );
-            emailService.enviarEmailPromocaodeNatal(pessoaentity.getEmail(), pessoaentity.getNome());
+            //emailService.enviarEmailPromocaodeNatal(pessoaentity.getEmail(), pessoaentity.getNome());
+
+
+            EmailDTO emailDTO = new EmailDTO(pessoaentity.getEmail(), "Adicione o seu endereço", String.format("<html xmlns=\"http://www.w3.org/1999/xhtml\">\n" +
+                    "<head>\n" +
+                    "    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />\n" +
+                    "    <title>Java Mail</title>\n" +
+                    "</head>\n" +
+                    "\n" +
+                    "<body>\n" +
+                    "Ola ${nome}\n" +
+                    "<br>\n" +
+                    "<br>\n" +
+                    "<br>\n" +
+                    "Selecionamos algumas das nossas super promoção de natal na nossa plataforma\n" +
+                    "<br>\n" +
+                    "especialmente para voçê:\n" +
+                    "<br>\n" +
+                    "- Na compra de 1 CDs do Chitãozinho e Xororó,ganhe 1 do Milionário e José Rico.\n" +
+                    "<br>\n" +
+                    "- Na Locação de um filme em VhS,a outra locação é grátis\n" +
+                    "<br>\n" +
+                    "- Fita de Super Nitendo com 50% de desconto.\n" +
+                    "<br>\n" +
+                    "Aproveite...\n" +
+                    "<br>\n" +
+                    "Magazine OldSchool.\n" +
+                    "<br>\n" +
+                    "att\n" +
+                    "<br>\n" +
+                    "Sistema\n" +
+                    "</body>\n" +
+                    "</html>", pessoaentity.getNome()));
+
+            producer.sendMessage(emailDTO);
         }
     }
 }

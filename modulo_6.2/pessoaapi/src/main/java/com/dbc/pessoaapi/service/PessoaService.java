@@ -2,14 +2,12 @@ package com.dbc.pessoaapi.service;
 
 import com.dbc.pessoaapi.Exceptions.RegraDeNegocioException;
 import com.dbc.pessoaapi.dto.*;
-import com.dbc.pessoaapi.entity.Enderecoentity;
 import com.dbc.pessoaapi.entity.Pessoaentity;
+import com.dbc.pessoaapi.kafka.Producer;
 import com.dbc.pessoaapi.repository.PessoaRepository;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.validator.constraints.br.CPF;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -61,9 +59,10 @@ public class PessoaService {
         return dto;
     }
 
-    public void delete(Integer id) throws RegraDeNegocioException {
+    public void delete(Integer id) throws RegraDeNegocioException, JsonProcessingException {
         Pessoaentity pessoa = findById(id);
         pessoaRepository.delete(pessoa);
+
     }
 
     public List<Pessoaentity> findByNome(String nome) {
